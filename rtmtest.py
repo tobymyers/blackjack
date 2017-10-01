@@ -191,7 +191,7 @@ def handleMessage(message):
                 #split the cards
                 #double the bet
 
-            elif rightPlayerAndState(user, 2) or rightPlayerAndState(user, 3) and ('~hit' in message_text or '~stay' in message_text or '~double down' in message_text):
+            elif rightPlayerAndState(user, 2) or rightPlayerAndState(user, 3): 
                 if '~stay' in message_text:
                     if False:#there are two active player hands:
                         playerHand = BlackJackHand(user, game, 0, False)
@@ -211,7 +211,7 @@ def handleMessage(message):
                         response = 'Dealer draws' + format(card)
                         post(response, channel)
                         time.sleep(1)
-                    #post entire hand
+
                     response = "*Dealer final hand:*" + format(dealerHand.getCards(user, True))
                     post(response, channel)
 
