@@ -9,6 +9,12 @@ from blackjackgame import *
 from basemodel import *
 from deck import *
 from convert import toPython
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 #bug log
 #date #bug #fix_idea # did it work?
 #9/23: #crashes when cash == 0, goes to blank #set to 0 as default value?
@@ -17,9 +23,9 @@ from convert import toPython
 #9/24 interprets decimals as whole numbers i.e. 4.5 as 45 #change field type to float for bet
 #9/24 posts undoubled bet to slack even when doubled down and subtracts the undoubled bet if you win.  don't know about database.  #probably a chooseWinner problem
 
-
-token = "xoxb-237318321376-yFZMOQoqAGKBuRD5O0vTkvo4"# found at https://api.slack.com/web#authentication
-sc = SlackClient(token)
+print os.environ.get("SLACK_TOKEN");
+#token = "xoxb-237318321376-yFZMOQoqAGKBuRD5O0vTkvo4"# found at https://api.slack.com/web#authentication
+sc = SlackClient(os.environ.get("SLACK_TOKEN"))
 
 def post(response, channel):
     sc.api_call("chat.postMessage", channel=channel,
@@ -191,7 +197,7 @@ def handleMessage(message):
                 #split the cards
                 #double the bet
 
-            elif rightPlayerAndState(user, 2) or rightPlayerAndState(user, 3): 
+            elif rightPlayerAndState(user, 2) or rightPlayerAndState(user, 3):
                 if '~stay' in message_text:
                     if False:#there are two active player hands:
                         playerHand = BlackJackHand(user, game, 0, False)
