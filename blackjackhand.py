@@ -18,11 +18,11 @@ class BlackJackHand:
 
     def __init__(self, user, game, bet, dealer):
         player = Player.get((Player.user_id == user.id) & (Player.dealer == dealer))
-        hand = Hand.select().where((Hand.player_id == player.id) & (Hand.active == True))
+        self.hand = Hand.select().where((Hand.player_id == player.id) & (Hand.active == True))
 
-        if not hand.exists():
-            hand = Hand.create(player = player.id, game = game.getId(user), cards = json.dumps([]), bet = bet, active = True)
-            hand.save()
+        if not self.hand.exists():
+            self.hand = Hand.create(player = player.id, game = game.getId(user), cards = json.dumps([]), bet = bet, active = True)
+            self.hand.save()
 
     def addCards(self, user, newCards, dealer):
         player = Player.get((Player.user_id == user.id) & (Player.dealer == dealer))
@@ -49,6 +49,11 @@ class BlackJackHand:
         hand = Hand.get((Hand.player_id == player.id) & (Hand.active == True))
         hand.active = False
         hand.save()
+
+    def close2(self):
+        print(self.hand.active)
+        self.hand.active = False
+        self.hand.save()
 
 
     def getBet(self, user, dealer):

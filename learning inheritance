@@ -1,0 +1,8 @@
+#learning_inheritance
+import BaseModel
+from hand import hand
+
+#i create a hand, assign it self.hand, alter it, then return self.hand
+#if I get the unaltered version, it's saving a static version of the hand in self.hand
+#if I get the altered version, every time I ask for self.hand it uses the query in the constructor
+  #this is good b/c that way I don't have to do so much querying, I can just construct it once and then use the instance variables
