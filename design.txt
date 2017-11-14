@@ -1,0 +1,30 @@
+Open Questions:
+where do all the posting and messaging functions live? right now it seems like BlackJack would be good
+
+
+classes:
+BlackJack
+    double_down
+    can_double_down
+    hit
+    can_hit
+    stay
+    split
+    can_split
+    end
+    can_end
+    start
+    place_bet
+
+Player
+    
+Dealer
+Game
+Hand
+Card
+
+models:
+user
+player
+game
+hand

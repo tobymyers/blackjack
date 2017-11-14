@@ -109,7 +109,6 @@ def handleMessage(message):
 
     if 'user' in message and 'text' in message and message['user'] != 'U6Z9C9FB2':
         timestamp = message['ts']
-        print(timestamp)
         user = getOrSaveUser(message['user']) #this gets us the user that sent a message, which we need to do every time
         game = BlackJackGame(user) #get all the shit here, once
         channel = message['channel']
