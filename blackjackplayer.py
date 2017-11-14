@@ -4,7 +4,7 @@ from peewee import *
 from game import *
 
 class BlackJackPlayer:
-    def __init__(self, user, dealer):
+    def __init__(self, user):
         """creates a player by testing to see if the user exists for that player, creating a user if not
         and then creating a player based on that user"""
 

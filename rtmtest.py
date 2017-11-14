@@ -110,8 +110,8 @@ def handleMessage(message):
     if 'user' in message and 'text' in message and message['user'] != 'U6Z9C9FB2':
         timestamp = message['ts']
         print(timestamp)
-        user = getOrSaveUser(message['user']) #this gets us the user to which this call refers, which we need to do every time
-        game = BlackJackGame(user)
+        user = getOrSaveUser(message['user']) #this gets us the user that sent a message, which we need to do every time
+        game = BlackJackGame(user) #get all the shit here, once
         channel = message['channel']
         message_text = message['text'] #gets text field from the message sent from slack
         #blackjack gameplay lives here.
@@ -121,8 +121,7 @@ def handleMessage(message):
 
         if user.trolled == True:
 
-            sc.api_call("reactions.add", channel=channel,name="eyes", timestamp=timestamp)
-
+            sc.api_call("reactions.add", channel=channel, name="eyes", timestamp=timestamp)
 
         if '~cash?' in message_text:
             player = BlackJackPlayer(user, False)

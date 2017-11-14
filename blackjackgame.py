@@ -3,15 +3,22 @@ from game import *
 from hand import *
 import json
 
+#methods to create:
+    #__init__(user) pass the user, grab the active game, active player, dealer, active hand(s), save everything as instance variables of the game
+    #double_down
+    #split
+    #bet
+    #stay
+
+
 class BlackJackGame:
    def __init__(self, user):
 
-       game = Game.select().where((Game.user_id == user.id) & (Game.active == True))
+       self.game = Game.select().where((Game.user_id == user.id) & (Game.active == True))
 
        if not game.exists():
-           game = Game.create(played_cards = json.dumps([]), unplayed_cards = [], active = True, user_id = user.id)
-           game.save()
-
+           self.game = Game.create(played_cards = json.dumps([]), unplayed_cards = [], active = True, user_id = user.id)
+           self.game.save()
 
    def getPlayed(self):
        return Game.get(Game.id == self.game.id).played_cards
