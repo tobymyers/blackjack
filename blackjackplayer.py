@@ -57,7 +57,3 @@ class BlackJackPlayer:
             self.hand2.append(deck.dealCard(1))
             self.bet += self.bet
         return self.hand1, self.hand2, self.bet
-
-    def doubleDown(self):
-         self.bet += self.bet
-         return self.bet

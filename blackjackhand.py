@@ -50,12 +50,6 @@ class BlackJackHand:
         hand.active = False
         hand.save()
 
-    def close2(self):
-        print(self.hand.active)
-        self.hand.active = False
-        self.hand.save()
-
-
     def getBet(self, user, dealer):
         player = Player.get((Player.user_id == user.id) & (Player.dealer == dealer))
         hand = Hand.get((Hand.player_id == player.id) & (Hand.active == True))

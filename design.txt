@@ -1,6 +1,7 @@
 Open Questions:
 where do all the posting and messaging functions live? right now it seems like BlackJack would be good
 
+answer: seems like formatting of messages should happen in blackjack but posting should happen in frequent_thoughts file
 
 classes:
 BlackJack
@@ -16,15 +17,55 @@ BlackJack
     start
     place_bet
 
-Player
-    
+Player: #handles "bank account cash" (hand handles each bet)
+    init
+    get_cash
+    add_cash
+    update_state
+
 Dealer
+    #dealer can inherit from Player but with a fixed amount of cash and slight method alterations
+
 Game
+    init
+    create_deck
+    shuffle
+    deal
+    choose_winner
+
+    count ALL player hands
+    play dealer hand
+    count dealer hand
+    compare player hands with dealer hands to choose winner
+    exchange money
+    post results
+
+      SPECS FOR GAME PLAY?
+          for each player hand:
+              count hand
+              if 21 or split or double down or bust (same as **if not stay**):
+                   do that stuff
+              otherwise:
+                   play the dealer hand
+                   count dealer hand
+                   compare player hands with dealer hands to choose winner
+                   exchange money
+                   post results
+
 Hand
+    add_cards
+    init
+    end
+
 Card
+    init
 
 models:
 user
 player
 game
 hand
+
+registerBet
+getCash
+updateState
